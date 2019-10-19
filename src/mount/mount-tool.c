@@ -360,7 +360,7 @@ static int parse_argv(int argc, char *argv[]) {
                         if (!u)
                                 return log_oom();
 
-                        r = chase_symlinks(u, NULL, 0, &arg_mount_what);
+                        r = chase_symlinks(u, NULL, argc == optind+1 ? CHASE_NONEXISTENT : 0, &arg_mount_what);
                         if (r < 0)
                                 return log_error_errno(r, "Failed to make path %s absolute: %m", u);
                 } else {
